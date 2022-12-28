@@ -35,3 +35,8 @@ panic-probe = { version = "0.3", features = ["print-defmt"] }
 [features]
 default = ["boot2"]
 boot2 = ["rp2040-boot2"]
+
+# [[bin]]
+# name = "app"
+# test = false
+# bench = false

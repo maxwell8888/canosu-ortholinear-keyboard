@@ -1,8 +1,8 @@
-
 use keyberon::action::{k, Action, Action::*};
+use keyberon::key_code::KeyCode;
 use keyberon::key_code::KeyCode::*;
 
-use crate::{NUM_COLS, NUM_ROWS, NUM_LAYERS};
+use crate::{NUM_COLS, NUM_LAYERS, NUM_ROWS};
 #[allow(unused_macros)]
 
 // Shift + KeyCode
@@ -28,9 +28,17 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
         All k(No) keys are functional
     */
     [
-        [k(Q),    k(W),    k(E),   k(R),   k(T),     k(Y),   k(U),   k(I),     k(O),     k(P)],
-        [k(A),    k(S),    k(D),   k(F),   k(G),     k(H),   k(J),   k(K),     k(L),     k(SColon)],
-        [k(Z),    k(X),    k(C),   k(V),   k(B),     k(N),   k(M),   k(Comma), k(Dot),   k(Slash)],
-        [ k(LGui), k(LAlt), Trans,  Trans,  k(Space), Trans,  Trans,  k(RAlt),  k(RCtrl), k(No),],
+    // left side                                                                                                                                              
+    [k(Escape), k(Grave),       k(Kb1),  k(Kb2), k(Kb3), k(Kb4),   k(Kb5),   k(F1),    k(F2),  k(F3),     k(A),        k(A),         k(A),      k(A),      k(A),    k(A)],
+    [k(A),      k(Tab),         k(Q),    k(W),   k(E),   k(R),     k(T),     k(F4),    k(F5),  k(F6),     k(O),        k(P),         k(A),      k(A),      k(A),    k(A)],
+    [k(A),      k(CapsLock),    k(A),    k(S),   k(D),   k(F),     k(G),     k(F7),    k(F8),  k(F9),     k(L),        k(SColon),    k(A),      k(A),      k(A),    k(A)],
+    [k(LShift), k(NonUsBslash), k(Z),    k(X),   k(C),   k(V),     k(B),     k(F10),   k(F11), k(F12),    k(Dot),      k(Slash),     k(A),      k(A),      k(A),    k(A)],
+    [k(LCtrl),  k(LGui),        k(LAlt), Trans,  Trans,  Trans,    k(Space), Trans,    Trans,  Trans,     Trans,       Trans,        Trans,     Trans,     Trans,   Trans,],
+    // right side                                                                                                                                                 
+    [k(A),      k(A),           k(A),    k(A),   k(A),   k(Kb6),   k(Kb7),   k(Kb8),   k(Kb9), k(Kb0),    k(Minus),    k(Equal),     k(BSpace), k(Insert), k(Home), k(PgUp)],
+    [Trans,     Trans,          Trans,   Trans,  Trans,  k(Y),     k(U),     k(I),     k(O),   k(P),      k(LBracket), k(RBracket),  k(Enter),  k(Delete), k(End),  k(PgDown)],
+    [Trans,     Trans,          Trans,   Trans,  Trans,  k(H),     k(J),     k(K),     k(L),   k(SColon), k(Quote),    k(NonUsHash), k(Enter),  Trans,     Trans,   Trans],
+    [Trans,     Trans,          Trans,   Trans,  Trans,  k(N),     k(M),     k(Comma), k(Dot), k(Slash),  k(RShift),   Trans,        k(RShift), Trans,     k(Up),   Trans],
+    [Trans,     Trans,          Trans,   Trans,  Trans,  k(Space), Trans,    Trans,    Trans,  Trans,     k(Space),    Trans,        k(RCtrl),  k(Left),   k(Down), k(Right),],
     ] 
 ];

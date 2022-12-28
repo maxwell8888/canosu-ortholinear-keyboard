@@ -1,17 +1,17 @@
 #![no_main]
 #![no_std]
 
-mod layout;
 mod delay;
+mod layout;
 
-const NUM_COLS: usize = 10;
-const NUM_ROWS: usize = 4;
+const NUM_COLS: usize = 16;
+const NUM_ROWS: usize = 10;
 const NUM_LAYERS: usize = 1;
 
-pub struct Graphics{
+pub struct Graphics {
     x: i32,
     y: i32,
-}  
+}
 
 /// The linker will place this boot block at the start of our program image. We
 /// need this to help the ROM bootloader get our code up and running.
@@ -30,6 +30,10 @@ mod app {
         _embedded_hal_watchdog_Watchdog, _embedded_hal_watchdog_WatchdogEnable,
     };
     use defmt_rtt as _;
+    use embedded_hal::{
+        digital::v2::{InputPin, OutputPin},
+        timer::CountDown,
+    };
     use embedded_time::duration::Extensions;
     use embedded_time::rate::Extensions as RateExtensions;
     use panic_probe as _;
@@ -37,38 +41,33 @@ mod app {
     use rp2040_hal::{
         clocks::{init_clocks_and_plls, Clock},
         gpio::{bank0::*, dynpin::DynPin},
-        pac::{I2C0, PIO0, RESETS, SPI0, CorePeripherals},
+        pac::{CorePeripherals, I2C0, PIO0, RESETS, SPI0},
         pio::{PIOExt, SM0, SM1},
         sio::Sio,
-        timer::{Alarm3, Timer, Alarm, Alarm2},
+        timer::{Alarm, Alarm2, Alarm3, Timer},
         usb::UsbBus,
         watchdog::Watchdog,
     };
-    use embedded_hal::{
-        digital::v2::{InputPin, OutputPin},
-        timer::CountDown,
-    };
 
     // lcd traits
-    use embedded_graphics::image::{Image, ImageRaw, ImageRawLE};
-    use embedded_graphics::prelude::*;
-    use embedded_graphics::pixelcolor::Rgb565;
     use embedded_graphics::geometry::Point;
+    use embedded_graphics::image::{Image, ImageRaw, ImageRawLE};
+    use embedded_graphics::pixelcolor::Rgb565;
+    use embedded_graphics::prelude::*;
+    use embedded_time::rate::Hertz;
     use st7735_lcd;
     use st7735_lcd::Orientation;
-    use embedded_time::rate::Hertz;
 
     use core::iter::once;
 
     use crate::delay::RP2040TimerDelay;
-    use crate::{NUM_COLS, NUM_ROWS, NUM_LAYERS};
     use crate::Graphics;
-
+    use crate::{NUM_COLS, NUM_LAYERS, NUM_ROWS};
 
     use crate::layout as kb_layout;
     use keyberon::debounce::Debouncer;
     use keyberon::key_code;
-    use keyberon::layout::{ Event, Layout};
+    use keyberon::layout::{Event, Layout};
 
     use usb_device::class::UsbClass;
     use usb_device::class_prelude::UsbBusAllocator;
@@ -77,9 +76,9 @@ mod app {
     // hardware delay
     // we explicitly do NOT use any delays using SYST as
     // RTIC has already taken it
-    use embedded_hal::{prelude::*, watchdog};
-    use asm_delay::AsmDelay;
     use asm_delay::bitrate::U32BitrateExt;
+    use asm_delay::AsmDelay;
+    use embedded_hal::{prelude::*, watchdog};
 
     // const SCAN_TIME_US: u32 = 1000;
     const SCAN_TIME_US: u32 = 2000;
@@ -92,7 +91,7 @@ mod app {
 
     const SCREEN_WIDTH: u32 = 128;
     const SCREEN_HEIGHT: u32 = 160;
-  
+
     #[shared]
     struct Shared {
         usb_dev: usb_device::device::UsbDevice<'static, UsbBus>,
@@ -100,22 +99,25 @@ mod app {
         timer: Timer,
         alarm: Alarm3,
         #[lock_free]
-        matrix: keyberon::matrix::Matrix<DynPin,DynPin,NUM_COLS,NUM_ROWS> ,
+        matrix: keyberon::matrix::Matrix<DynPin, DynPin, NUM_COLS, NUM_ROWS>,
         layout: Layout<NUM_COLS, NUM_ROWS, NUM_LAYERS, kb_layout::CustomActions>,
         #[lock_free]
         debouncer: Debouncer<[[bool; NUM_COLS]; NUM_ROWS]>,
         #[lock_free]
         watchdog: Watchdog,
-        #[lock_free]
-        display: st7735_lcd::ST7735<rp2040_hal::Spi<rp2040_hal::spi::Enabled,SPI0,8> , rp2040_hal::gpio::Pin<Gpio16,rp2040_hal::gpio::Output<rp2040_hal::gpio::PushPull>> , rp2040_hal::gpio::Pin<Gpio14,rp2040_hal::gpio::Output<rp2040_hal::gpio::PushPull>>>,
+        // #[lock_free]
+        // display: st7735_lcd::ST7735<
+        //     rp2040_hal::Spi<rp2040_hal::spi::Enabled, SPI0, 8>,
+        //     rp2040_hal::gpio::Pin<Gpio16, rp2040_hal::gpio::Output<rp2040_hal::gpio::PushPull>>,
+        //     rp2040_hal::gpio::Pin<Gpio14, rp2040_hal::gpio::Output<rp2040_hal::gpio::PushPull>>,
+        // >,
         displayAlarm: Alarm2,
         #[lock_free]
-        graphics: Graphics
+        graphics: Graphics,
     }
 
     #[local]
     struct Local {}
-
 
     #[init]
     fn init(c: init::Context) -> (Shared, Local, init::Monotonics) {
@@ -151,7 +153,6 @@ mod app {
         let _ = displayAlarm.schedule(DISPLAY_UPDATE_TIME_US.microseconds());
         displayAlarm.enable_interrupt();
 
-
         let (mut pio, sm0, sm1, _, _) = c.device.PIO0.split(&mut resets);
 
         let usb_bus = UsbBusAllocator::new(UsbBus::new(
@@ -171,22 +172,34 @@ mod app {
 
         let matrix = keyberon::matrix::Matrix::new(
             [
-                pins.gpio27.into_pull_up_input().into(),
-                pins.gpio26.into_pull_up_input().into(),
-                pins.gpio22.into_pull_up_input().into(),
-                pins.gpio21.into_pull_up_input().into(),
-                pins.gpio20.into_pull_up_input().into(),
-                pins.gpio4.into_pull_up_input().into(),
-                pins.gpio3.into_pull_up_input().into(),
-                pins.gpio2.into_pull_up_input().into(),
-                pins.gpio1.into_pull_up_input().into(),
                 pins.gpio0.into_pull_up_input().into(),
+                pins.gpio1.into_pull_up_input().into(),
+                pins.gpio2.into_pull_up_input().into(),
+                pins.gpio3.into_pull_up_input().into(),
+                pins.gpio6.into_pull_up_input().into(),
+                pins.gpio5.into_pull_up_input().into(),
+                pins.gpio4.into_pull_up_input().into(),
+                pins.gpio7.into_pull_up_input().into(),
+                pins.gpio8.into_pull_up_input().into(),
+                pins.gpio9.into_pull_up_input().into(),
+                pins.gpio10.into_pull_up_input().into(),
+                pins.gpio11.into_pull_up_input().into(),
+                pins.gpio12.into_pull_up_input().into(),
+                pins.gpio13.into_pull_up_input().into(),
+                pins.gpio28.into_pull_up_input().into(),
+                pins.gpio27.into_pull_up_input().into(),
             ],
             [
-                pins.gpio5.into_push_pull_output().into(),
-                pins.gpio6.into_push_pull_output().into(),
-                pins.gpio7.into_push_pull_output().into(),
-                pins.gpio8.into_push_pull_output().into(),
+                pins.gpio14.into_push_pull_output().into(),
+                pins.gpio15.into_push_pull_output().into(),
+                pins.gpio16.into_push_pull_output().into(),
+                pins.gpio17.into_push_pull_output().into(),
+                pins.gpio18.into_push_pull_output().into(),
+                pins.gpio19.into_push_pull_output().into(),
+                pins.gpio20.into_push_pull_output().into(),
+                pins.gpio21.into_push_pull_output().into(),
+                pins.gpio22.into_push_pull_output().into(),
+                pins.gpio26.into_push_pull_output().into(),
             ],
         );
         // let matrix = keyberon::matrix::Matrix::new(
@@ -210,48 +223,47 @@ mod app {
         //     ],
         // );
 
+        // // These are implicitly used by the spi driver if they are in the correct mode
+        // let _spi_sclk = pins.gpio18.into_mode::<rp2040_hal::gpio::FunctionSpi>();
+        // let _spi_mosi = pins.gpio19.into_mode::<rp2040_hal::gpio::FunctionSpi>();
+        // //let _spi_miso = pins.gpio4.into_mode::<rp2040_hal::gpio::FunctionSpi>();
+        // let spi = rp2040_hal::Spi::<_, _, 8>::new(c.device.SPI0);
 
-        // These are implicitly used by the spi driver if they are in the correct mode
-        let _spi_sclk = pins.gpio18.into_mode::<rp2040_hal::gpio::FunctionSpi>();
-        let _spi_mosi = pins.gpio19.into_mode::<rp2040_hal::gpio::FunctionSpi>();
-        //let _spi_miso = pins.gpio4.into_mode::<rp2040_hal::gpio::FunctionSpi>();
-        let spi = rp2040_hal::Spi::<_, _, 8>::new(c.device.SPI0);
+        // let mut lcd_led = pins.gpio15.into_push_pull_output();
+        // let dc = pins.gpio16.into_push_pull_output();
+        // let rst = pins.gpio14.into_push_pull_output();
 
-        let mut lcd_led = pins.gpio15.into_push_pull_output();
-        let dc = pins.gpio16.into_push_pull_output();
-        let rst = pins.gpio14.into_push_pull_output();
+        // // Exchange the uninitialised SPI driver for an initialised one
+        // let spi = spi.init(
+        //     &mut resets,
+        //     clocks.peripheral_clock.freq(),
+        //     Hertz::new(16_000_000u32),
+        //     &embedded_hal::spi::MODE_0,
+        // );
 
-        // Exchange the uninitialised SPI driver for an initialised one
-        let spi = spi.init(
-            &mut resets,
-            clocks.peripheral_clock.freq(),
-            Hertz::new(16_000_000u32),
-            &embedded_hal::spi::MODE_0,
-        );
-
-        let mut display = st7735_lcd::ST7735::new(spi, dc, rst, true, false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        
+        // let mut display =
+        //     st7735_lcd::ST7735::new(spi, dc, rst, true, false, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Cannot use SYST as RTIC has already taken this
         // https://github.com/rtic-rs/cortex-m-rtic/issues/523
 
         let mut delay = RP2040TimerDelay::new(&timer);
         // let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().0);
-        
 
         // This WORKS
         // use cortex_m::asm::delay;
         // cortex_m::asm::delay(10000000_u32);
         // lcd_led.set_high().unwrap();
 
-
         // delay.delay_ms(1000_u32);
         // lcd_led.set_high().unwrap();
 
-        display.init(&mut delay).unwrap();
-        display.set_orientation(&Orientation::PortraitSwapped).unwrap();
-        display.clear(Rgb565::BLACK).unwrap();
-        display.set_offset(0, 0);
+        // display.init(&mut delay).unwrap();
+        // display
+        //     .set_orientation(&Orientation::PortraitSwapped)
+        //     .unwrap();
+        // display.clear(Rgb565::BLACK).unwrap();
+        // display.set_offset(0, 0);
 
         // let image_raw: ImageRawLE<Rgb565> =
         //     ImageRaw::new(include_bytes!("../assets/ferris.raw"), 86);
@@ -259,17 +271,16 @@ mod app {
         // let image: Image<_> = Image::new(&image_raw, Point::new(24, 28));
 
         // image.draw(&mut display).unwrap();
-        
+
         // Wait until the background and image have been rendered otherwise
         // the screen will show random pixels for a brief moment
 
-        lcd_led.set_high().unwrap();
+        // lcd_led.set_high().unwrap();
 
         // start watchdog after initialization
         // It needs to be fairly high though to account for screen drawing etc
         // watchdog.start(10_000.microseconds());
         watchdog.start(1_000_000.microseconds());
-
 
         (
             Shared {
@@ -278,12 +289,16 @@ mod app {
                 timer,
                 alarm,
                 matrix: matrix.unwrap(),
-                debouncer: Debouncer::new([[false; NUM_COLS]; NUM_ROWS], [[false; NUM_COLS]; NUM_ROWS], 10),
+                debouncer: Debouncer::new(
+                    [[false; NUM_COLS]; NUM_ROWS],
+                    [[false; NUM_COLS]; NUM_ROWS],
+                    10,
+                ),
                 layout: Layout::new(&kb_layout::LAYERS),
                 watchdog,
-                display,
+                // display,
                 displayAlarm,
-                graphics: crate::Graphics{x:0,y:0}
+                graphics: crate::Graphics { x: 0, y: 0 },
             },
             Local {},
             init::Monotonics(),
@@ -318,11 +333,11 @@ mod app {
                 layout.lock(|l| l.event(e));
                 return;
             }
-        }       
+        }
 
         let report: key_code::KbHidReport = layout.lock(|l| l.keycodes().collect());
         if !c
-            .shared  
+            .shared
             .usb_class
             .lock(|k| k.device_mut().set_keyboard_report(report.clone()))
         {
@@ -334,25 +349,29 @@ mod app {
         while let Ok(0) = c.shared.usb_class.lock(|k| k.write(report.as_bytes())) {}
     }
 
-    #[task(binds = TIMER_IRQ_2, priority = 1, shared = [ display, displayAlarm, graphics ])]
+    // #[task(binds = TIMER_IRQ_2, priority = 1, shared = [ display, displayAlarm, graphics ])]
+    #[task(binds = TIMER_IRQ_2, priority = 1, shared = [ displayAlarm, graphics ])]
     fn screen_update_irq(c: screen_update_irq::Context) {
         // please ignore some of this sloppy code
         // i am a good coder irl i pinky promise
 
         let mut alarm = c.shared.displayAlarm;
 
-        let display = c.shared.display;
+        // let display = c.shared.display;
         let graphics = c.shared.graphics;
 
         let image_raw: ImageRawLE<Rgb565> =
-        ImageRaw::new(include_bytes!("../assets/ferris.raw"), 86);
+            ImageRaw::new(include_bytes!("../assets/ferris.raw"), 86);
 
         let image: Image<_> = Image::new(&image_raw, Point::new(0, graphics.y));
-        
+
         //display.clear(Rgb565::BLACK).unwrap();
 
         //let style = embedded_graphics::mono_font::MonoTextStyle::new(, Rgb565::WHITE);
-        let styleBlack = embedded_graphics::mono_font::MonoTextStyle::new(&embedded_graphics::mono_font::ascii::FONT_8X13_BOLD, Rgb565::BLACK);
+        let styleBlack = embedded_graphics::mono_font::MonoTextStyle::new(
+            &embedded_graphics::mono_font::ascii::FONT_8X13_BOLD,
+            Rgb565::BLACK,
+        );
 
         let textStyleWhite = embedded_graphics::mono_font::MonoTextStyleBuilder::new()
             .font(&embedded_graphics::mono_font::ascii::FONT_8X13_BOLD)
@@ -368,24 +387,29 @@ mod app {
         let FONT_BUFFER = 13;
         // let NUM_LINES = 9;
         let NUM_LINES = 8;
-        let TOTAL_HEIGHT = SCREEN_HEIGHT as i32+FONT_BUFFER;
+        let TOTAL_HEIGHT = SCREEN_HEIGHT as i32 + FONT_BUFFER;
 
         //embedded_graphics::text::Text::new("Hello Rust!", Point::new(20, graphics.y-1), styleBlack).draw(display);
         for i in 0..NUM_LINES {
             //graphics.y += (( i/NUM_LINES) * 200);
-            let newY = (graphics.y+(((SCREEN_HEIGHT as i32+FONT_BUFFER)/(NUM_LINES))*i))%(SCREEN_HEIGHT as i32+FONT_BUFFER);// %(SCREEN_HEIGHT as i32+FONT_BUFFER);
-            let style = if i == 0 {textStyleRed} else {textStyleWhite};
-            //let text1 = if i == 0 {"! 「システム"} else {"! SYSTEM"}; 
-            let text1 = if i == 0 {"! ｼｽﾃﾑ"} else {"! SYSTEM"}; 
+            let newY = (graphics.y + (((SCREEN_HEIGHT as i32 + FONT_BUFFER) / (NUM_LINES)) * i))
+                % (SCREEN_HEIGHT as i32 + FONT_BUFFER); // %(SCREEN_HEIGHT as i32+FONT_BUFFER);
+            let style = if i == 0 { textStyleRed } else { textStyleWhite };
+            //let text1 = if i == 0 {"! 「システム"} else {"! SYSTEM"};
+            let text1 = if i == 0 { "! ｼｽﾃﾑ" } else { "! SYSTEM" };
             //let text2 = if i == 0 {"パニック」!"} else {"PANIC !"};
-            let text2 = if i == 0 {"ﾊﾟﾆｯｸ!"} else {"PANIC !"};
+            let text2 = if i == 0 {
+                "ﾊﾟﾆｯｸ!"
+            } else {
+                "PANIC !"
+            };
             // let text = if i%2==0 {"hocus"} else {"pocus"};
-            embedded_graphics::text::Text::new(text1, Point::new(0, TOTAL_HEIGHT-newY), style).draw(display);
-            embedded_graphics::text::Text::new(text2, Point::new(70, newY), style).draw(display);
+            // embedded_graphics::text::Text::new(text1, Point::new(0, TOTAL_HEIGHT - newY), style)
+            //     .draw(display);
+            // embedded_graphics::text::Text::new(text2, Point::new(70, newY), style).draw(display);
         }
 
-        
-        graphics.y = (graphics.y + 1)%(SCREEN_HEIGHT as i32+FONT_BUFFER);
+        graphics.y = (graphics.y + 1) % (SCREEN_HEIGHT as i32 + FONT_BUFFER);
 
         //image.draw(display).unwrap();
 
@@ -393,14 +417,10 @@ mod app {
             a.clear_interrupt();
             let _ = a.schedule(DISPLAY_UPDATE_TIME_US.microseconds());
         });
-
     }
-
 
     #[task(binds = TIMER_IRQ_3, priority = 2, shared = [ matrix, debouncer, timer, alarm, watchdog, usb_dev, usb_class])]
     fn scan_timer_irq(mut c: scan_timer_irq::Context) {
-
-
         c.shared.watchdog.feed();
 
         for event in c.shared.debouncer.events(c.shared.matrix.get().unwrap()) {
