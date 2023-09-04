@@ -9,5 +9,7 @@
         "/Users/chriz/.vscode/extensions/joedevivo.vscode-circuitpython-0.1.17-darwin-arm64/stubs",
         "/Users/chriz/Library/Application Support/Code/User/globalStorage/joedevivo.vscode-circuitpython/bundle/20220804/adafruit-circuitpython-bundle-py-20220804/lib"
     ],
-    "circuitpython.board.version": null
+    "circuitpython.board.version": null,
+    "rust-analyzer.cargo.target": "thumbv7em-none-eabihf",
+    "rust-analyzer.checkOnSave.allTargets": false
 }
