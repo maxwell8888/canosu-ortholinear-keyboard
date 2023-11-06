@@ -25,12 +25,12 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 {
 // left side                                                                                                                                              
 [n       n      n                 n n   n      n               n n n n n n n n n]
-[Escape  Grave  W                 E R   T      t               n n n n n n n n n]
+[Escape  Grave  W                 E R   T      L               n n n n n n n n n]
 [Tab     Q      S                 D F   G      MediaScrollUp   n n n n n n n n n]
 [BSpace  A      X                 C V   B      MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt              n (1) RShift LGui            n n n n n n n n n]
 // right side                                                                                                                                                    
-[n n n n n n n n n             n     {DefaultLayer(3)}     n     n      n        n       n]
+[n n n n n n n n n             n     {DefaultLayer(6)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y     U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp    H     J                     K     L      P        Enter   n]
 [n n n n n n n n MediaVolDown  N     M                     Up    Up     Space    Home    n]
@@ -75,7 +75,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // layer 3
 // left side                                                                                                                                              
 [n       n      n     n     n    n      n               n n n n n n n n n]
-[Escape  Grave  W     E     R    T      t               n n n n n n n n n]
+[Escape  /  W     E     R    T      N               n n n n n n n n n]
 [Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
 [BSpace  A      X     C     V    B      MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
@@ -99,7 +99,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n   ~    1    2    3    '['      ']'          t]
 [n n n n n n n n n   .    4    5    6    '{'      '}'          t]
 [n n n n n n n n n   ,    7    8    9    SColon   Quote        t]
-[n n n n n n n n n   t    -    0    =    /        NonUsBslash  t]
+[n n n n n n n n n   t    -    0    =    Grave        NonUsBslash  t]
 }
 {
 // layer 5
@@ -124,24 +124,24 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 {
 // layer 6
 // left side                                                                                                                                              
-[n       n      n     n     n    n      n               n n n n n n n n n]
-[Escape  /      W     E     R    T      t               n n n n n n n n n]
-[Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
-[BSpace  L      X     C     V    B      MediaScrollDown n n n n n n n n n]
-[n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
+[n       n                n     n     n    n      n               n n n n n n n n n]
+[Escape  NonUsBslash      W     E     R    T      F               n n n n n n n n n]
+[Tab     Q                S     D     F    G      MediaScrollUp   n n n n n n n n n]
+[BSpace  A                X     C     V    B      MediaScrollDown n n n n n n n n n]
+[n       Z                LAlt  LCtrl (7)  RShift LGui            n n n n n n n n n]
 // right side                                                                                                                                                    
-[n n n n n n n n n             n     {DefaultLayer(0)} t     t      t        t       t]
-[n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown  t]
-[n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter   t]
-[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    Home    t]
-[n n n n n n n n (4)           (9)   Left              Down  Right  Down     End     t]
+[n n n n n n n n n             n     {DefaultLayer(0)} t     t      t        t              t]
+[n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown         t]
+[n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter          t]
+[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    [RGui Left]    t]
+[n n n n n n n n (7)           (9)   Left              Down  Right  Down     [RGui Right]   t]
 }
 {
 // layer 7
 // left side                                                                                                                                              
 [n         n            t     t      t      t      n n n n n n n n n n]
 [Escape    NonUsHash    !     @      $      ^      n n n n n n n n n n]
-[<         >            .     ,      (5)    SColon n n n n n n n n n n]
+[<         >            .     ,      (8)    SColon n n n n n n n n n n]
 [Delete    ?            '('   ')'    &      %      n n n n n n n n n n]
 [*         '"'          t     |      t      t      n n n n n n n n n n]
 // right side                                                                                                                                                    
@@ -149,7 +149,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n   ~    1    2    3    '['      ']'          t]
 [n n n n n n n n n   .    4    5    6    '{'      '}'          t]
 [n n n n n n n n n   ,    7    8    9    SColon   Quote        t]
-[n n n n n n n n n   t    -    0    =    Grave    NonUsBslash  t]
+[n n n n n n n n n   (10) -    0    =    /        Grave        t]
 }
 {
 // layer 8
@@ -170,19 +170,33 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 {
 // layer 9 Right Cmd/Ctrl
 // left side                                                                                                                                              
-[n       n      n     n         n        n        n               n n n n n n n n n]
-[Escape  /      W     E         R        [LGui T] t        n n n n n n n n n]
-[Tab     Q      S     D         F        G        MediaScrollUp   n n n n n n n n n]
-[BSpace  A      X     [LGui C]  [LGui V] B        MediaScrollDown n n n n n n n n n]
-[n       Z      LAlt  LCtrl     (4)      RShift   LGui            n n n n n n n n n]
+[n       n         n            n         n        n         n               n n n n n n n n n]
+[Escape  [LGui /]  [LGui W]     [LGui E]  [LGui R] [LGui T]  t               n n n n n n n n n]
+[Tab     [LGui Q]  [LGui S]     [LGui D]  [LGui F] [LGui G]  MediaScrollUp   n n n n n n n n n]
+[BSpace  [LGui A]  [LGui X]     [LGui C]  [LGui V] [LGui B]  MediaScrollDown n n n n n n n n n]
+[n       [LGui Z]  LAlt         LCtrl     (10)      RShift    LGui            n n n n n n n n n]
 // right side                                                                                                                                                    
-[n n n n n n n n n             n     {DefaultLayer(0)} t     t      t             t              t]
-[n n n n n n n n MediaMute     Y     U                 I     O      [RCtrl PgUp]  [RCtrl PgDown] t]
-[n n n n n n n n MediaVolUp    H     J                 K     L      P             Enter          t]
-[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space         Home           t]
-[n n n n n n n n (4)           (6)   Left              Down  Right  Down          End            t]
+[n n n n n n n n n             n            {DefaultLayer(0)} t            t             t              t              t]
+[n n n n n n n n MediaMute     [RGui Y]     [RGui U]          [RGui I]     [RGui O]      [RCtrl PgUp]   [RCtrl PgDown] t]
+[n n n n n n n n MediaVolUp    [RGui H]     [RGui J]          [RGui K]     [RGui L]      [RGui P]       [RGui Enter]   t]
+[n n n n n n n n MediaVolDown  [RGui N]     [RGui M]          [RGui Up]    n             [RGui Space]   [RGui Home]    t]
+[n n n n n n n n (4)           t            [LAlt Left]       [RGui Down]  [LAlt Right]  n              [RGui End]     t]
 }
-    
+{
+// layer 10 Right Cmd/Ctrl *and* symbol layer
+// left side                                                                                                                                              
+[n                n            t     t      t      t      n n n n n n n n n n]
+[Escape           NonUsHash    !     @      $      ^      n n n n n n n n n n]
+[<                >            .     ,      (5)    SColon n n n n n n n n n n]
+[[RGui Delete]    ?            '('   ')'    &      %      n n n n n n n n n n]
+[*                '"'          t     |      t      t      n n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n   n           n           n    n           n               n            t]
+[n n n n n n n n n   n           1           2    3           '['             ']'          t]
+[n n n n n n n n n   [LGui .]    4           5    6           '{'             '}'          t]
+[n n n n n n n n n   [LGui ,]    7           8    9           SColon          Quote        t]
+[n n n n n n n n n   n           [LGui -]    0    [LGui =]    [LGui /]        Grave  t]
+}
 
 // {
 // // layer 6 - Cmd

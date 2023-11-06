@@ -6,7 +6,7 @@ mod layout;
 
 const NUM_COLS: usize = 16;
 const NUM_ROWS: usize = 10;
-const NUM_LAYERS: usize = 10;
+const NUM_LAYERS: usize = 11;
 
 pub struct Graphics {
     x: i32,
