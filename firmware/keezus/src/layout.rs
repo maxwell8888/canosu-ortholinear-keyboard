@@ -24,17 +24,17 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Linux
 {
 // left side                                                                                                                                              
-[n       n      {DefaultLayer(3)} n n   n      n               n n n n n n n n n]
+[n       n      n                 n n   n      n               n n n n n n n n n]
 [Escape  Grave  W                 E R   T      t               n n n n n n n n n]
 [Tab     Q      S                 D F   G      MediaScrollUp   n n n n n n n n n]
 [BSpace  A      X                 C V   B      MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt              n (1) RShift LGui            n n n n n n n n n]
 // right side                                                                                                                                                    
-[n n n n n n n n t             t     t     t     t      t        t       t]
-[n n n n n n n n MediaMute     Y     U     I     O      PgUp     PgDown  t]
-[n n n n n n n n MediaVolUp    H     J     K     L      P        Enter   t]
-[n n n n n n n n MediaVolDown  N     M     Up    Up     Space    Home    t]
-[n n n n n n n n (1)           RCtrl Left  Down  Right  Down     End     t]
+[n n n n n n n n n             n     {DefaultLayer(3)}     n     n      n        n       n]
+[n n n n n n n n MediaMute     Y     U                     I     O      PgUp     PgDown  n]
+[n n n n n n n n MediaVolUp    H     J                     K     L      P        Enter   n]
+[n n n n n n n n MediaVolDown  N     M                     Up    Up     Space    Home    n]
+[n n n n n n n n (1)           RCtrl Left                  Down  Right  Down     End     n]
 }
 {
 // layer 1
@@ -61,7 +61,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n n     n     n      n   n   n   n]
-[n n n n n n n n n n     F1    F2     F3  n   n   n]
+[n n n n n n n n n n     F1    F2     F3  n   L   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
 [n n n n n n n n n n     F7    F8     F9  n   n   n]
 [n n n n n n n n n t     F10   F11    F12 n   n   n]
@@ -70,20 +70,21 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 
 
-// MacOS
+// MacOS Normal
 {
+// layer 3
 // left side                                                                                                                                              
-[n       n      {DefaultLayer(0)} n     n    n      n               n n n n n n n n n]
-[Escape  Grave  W                 E     R    T      t               n n n n n n n n n]
-[Tab     Q      S                 D     F    G      MediaScrollUp   n n n n n n n n n]
-[BSpace  A      X                 C     V    B      MediaScrollDown n n n n n n n n n]
-[n       Z      LAlt              LCtrl (4)  RShift LGui            n n n n n n n n n]
+[n       n      n     n     n    n      n               n n n n n n n n n]
+[Escape  Grave  W     E     R    T      t               n n n n n n n n n]
+[Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
+[BSpace  A      X     C     V    B      MediaScrollDown n n n n n n n n n]
+[n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
 // right side                                                                                                                                                    
-[n n n n n n n n t             t     t     t     t      t        t       t]
-[n n n n n n n n MediaMute     Y     U     I     O      PgUp     PgDown  t]
-[n n n n n n n n MediaVolUp    H     J     K     L      P        Enter   t]
-[n n n n n n n n MediaVolDown  N     M     Up    Up     Space    Home    t]
-[n n n n n n n n (4)           RGui  Left  Down  Right  Down     End     t]
+[n n n n n n n n n             n     {DefaultLayer(6)} t     t      t        t       t]
+[n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown  t]
+[n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter   t]
+[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    Home    t]
+[n n n n n n n n (4)           RGui  Left              Down  Right  Down     End     t]
 }
 {
 // layer 4
@@ -110,10 +111,76 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n n     n     n      n   n   n   n]
-[n n n n n n n n n n     F1    F2     F3  n   n   n]
+[n n n n n n n n n n     F1    F2     F3  n   M   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
 [n n n n n n n n n n     F7    F8     F9  n   n   n]
 [n n n n n n n n n t     F10   F11    F12 n   n   n]
+}
+
+
+
+
+// MacOS Linux Like
+{
+// layer 6
+// left side                                                                                                                                              
+[n       n      n     n     n    n      n               n n n n n n n n n]
+[Escape  /      W     E     R    T      t               n n n n n n n n n]
+[Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
+[BSpace  L      X     C     V    B      MediaScrollDown n n n n n n n n n]
+[n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n             n     {DefaultLayer(0)} t     t      t        t       t]
+[n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown  t]
+[n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter   t]
+[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    Home    t]
+[n n n n n n n n (4)           (9)   Left              Down  Right  Down     End     t]
+}
+{
+// layer 7
+// left side                                                                                                                                              
+[n         n            t     t      t      t      n n n n n n n n n n]
+[Escape    NonUsHash    !     @      $      ^      n n n n n n n n n n]
+[<         >            .     ,      (5)    SColon n n n n n n n n n n]
+[Delete    ?            '('   ')'    &      %      n n n n n n n n n n]
+[*         '"'          t     |      t      t      n n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n   t    t    t    t    t        t            t]
+[n n n n n n n n n   ~    1    2    3    '['      ']'          t]
+[n n n n n n n n n   .    4    5    6    '{'      '}'          t]
+[n n n n n n n n n   ,    7    8    9    SColon   Quote        t]
+[n n n n n n n n n   t    -    0    =    Grave    NonUsBslash  t]
+}
+{
+// layer 8
+// left side                                                                                                                                              
+[t           Escape     Home   t   End        t     End    n n n n n n n n n]
+[t           RAlt       Grave  W    E         R     T      n n n n n n n n n]
+[t           t          Q      S    D         F     G      n n n n n n n n n]
+[t           Delete     A      Z    X         C     V      n n n n n n n n n]
+[t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n n     n     n      n   n   n   n]
+[n n n n n n n n n n     F1    F2     F3  n   M   n]
+[n n n n n n n n n n     F4    F5     F6  n   n   n]
+[n n n n n n n n n n     F7    F8     F9  n   n   n]
+[n n n n n n n n n t     F10   F11    F12 n   n   n]
+}
+
+{
+// layer 9 Right Cmd/Ctrl
+// left side                                                                                                                                              
+[n       n      n     n         n        n        n               n n n n n n n n n]
+[Escape  /      W     E         R        [LGui T] t        n n n n n n n n n]
+[Tab     Q      S     D         F        G        MediaScrollUp   n n n n n n n n n]
+[BSpace  A      X     [LGui C]  [LGui V] B        MediaScrollDown n n n n n n n n n]
+[n       Z      LAlt  LCtrl     (4)      RShift   LGui            n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n             n     {DefaultLayer(0)} t     t      t             t              t]
+[n n n n n n n n MediaMute     Y     U                 I     O      [RCtrl PgUp]  [RCtrl PgDown] t]
+[n n n n n n n n MediaVolUp    H     J                 K     L      P             Enter          t]
+[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space         Home           t]
+[n n n n n n n n (4)           (6)   Left              Down  Right  Down          End            t]
 }
     
 
