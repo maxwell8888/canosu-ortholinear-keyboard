@@ -1,4 +1,4 @@
-#   keezus
+#   Canosu keyboard
 
 ##  Dependencies
 rustup default beta
