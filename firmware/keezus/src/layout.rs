@@ -133,8 +133,8 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n             n     {DefaultLayer(0)} t     t      t        t              t]
 [n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown         t]
 [n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter          t]
-[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    [RGui Left]    t]
-[n n n n n n n n (7)           (9)   Left              Down  Right  Down     [RGui Right]   t]
+[n n n n n n n n MediaVolDown  N     M                 Up    Up     Space    [RGui Up]    t]
+[n n n n n n n n (7)           (9)   Left              Down  Right  Down     [RGui Down]   t]
 }
 {
 // layer 7
@@ -179,8 +179,8 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n             n            {DefaultLayer(0)} t            t             t              t              t]
 [n n n n n n n n MediaMute     [RGui Y]     [RGui U]          [RGui I]     [RGui O]      [RCtrl PgUp]   [RCtrl PgDown] t]
 [n n n n n n n n MediaVolUp    [RGui H]     [RGui J]          [RGui K]     [RGui L]      [RGui P]       [RGui Enter]   t]
-[n n n n n n n n MediaVolDown  [RGui N]     [RGui M]          [RGui Up]    n             [RGui Space]   [RGui Home]    t]
-[n n n n n n n n (4)           t            [LAlt Left]       [RGui Down]  [LAlt Right]  n              [RGui End]     t]
+[n n n n n n n n MediaVolDown  [RGui N]     [RGui M]          [RGui 1]     n             [RGui Space]   [RGui Home]    t]
+[n n n n n n n n (4)           RGui         [LAlt Left]       [RGui 2]     [LAlt Right]  n              [RGui End]     t]
 }
 {
 // layer 10 Right Cmd/Ctrl *and* symbol layer
