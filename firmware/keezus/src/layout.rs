@@ -24,11 +24,11 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Linux
 {
 // left side                                                                                                                                              
-[n       n      n                 n n   n      n               n n n n n n n n n]
-[Escape  Grave  W                 E R   T      t               n n n n n n n n n]
-[Tab     Q      S                 D F   G      MediaScrollUp   n n n n n n n n n]
-[BSpace  A      X                 C V   B      MediaScrollDown n n n n n n n n n]
-[n       Z      LAlt              n (1) RShift LGui            n n n n n n n n n]
+[n       n      n                 n n    n      n               n n n n n n n n n]
+[Escape  Grave  W                 E R    T      t               n n n n n n n n n]
+[Tab     Q      S                 D F    G      MediaScrollUp   n n n n n n n n n]
+[BSpace  A      X                 C V    B      MediaScrollDown n n n n n n n n n]
+[n       Z      LAlt              n LGui RShift (1)             n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n             n     {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y     U                     I     O      PgUp     PgDown  n]
@@ -38,18 +38,19 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 }
 {
 // layer 1
+// TODO update keyberon so I can replace SColon with ':'
 // left side                                                                                                                                              
 [n         n            t     t      t      t      n n n n n n n n n n]
-[Escape    NonUsHash    !     @      $      ^      n n n n n n n n n n]
-[<         >            .     ,      (2)    SColon n n n n n n n n n n]
-[Delete    ?            '('   ')'    &      %      n n n n n n n n n n]
-[*         '"'          t     |      t      t      n n n n n n n n n n]
+[n         *            !     '('    ')'    ^      n n n n n n n n n n]
+[|         NonUsHash    &     ,      .      SColon n n n n n n n n n n]
+[Delete    ?            <     >      =      '_'    n n n n n n n n n n]
+[%         Quote        n     n      n      n      n n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n   t    t    t    t    t        t            t]
 [n n n n n n n n n   ~    1    2    3    '['      ']'          t]
-[n n n n n n n n n   .    4    5    6    '{'      '}'          t]
-[n n n n n n n n n   ,    7    8    9    SColon   Quote        t]
-[n n n n n n n n n   t    -    0    =    /        NonUsBslash  t]
+[n n n n n n n n n   $    4    5    6    '{'      '}'          t]
+[n n n n n n n n n   @    7    8    9    SColon   '"'          t]
+[n n n n n n n n n   t    -    0    +    /        NonUsBslash  t]
 }
 {
 // layer 2
