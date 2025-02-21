@@ -27,17 +27,22 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Having . on the same hand as numbers for 1 handed typing seems nice but tab would probably be more useful... 
 {
 // left side                                                                                                                                              
-[n       n      n                 n n    n      n               n n n n n n n n n]
-[Escape  Grave  W                 E R    T      t               n n n n n n n n n]
-[Tab     Q      S                 D F    G      MediaScrollUp   n n n n n n n n n]
-[BSpace  A      X                 C V    B      MediaScrollDown n n n n n n n n n]
-[n       Z      LAlt              n (1)  LShift LGui            n n n n n n n n n]
+[n       n      n                 n    n    n      n                 n n n n n n n n n]
+[Escape  Grave  W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
+[Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
+[BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
+[n       Z      LAlt              (11) (1)  LShift LGui              n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
-[n n n n n n n n MediaVolDown  N        M                     Up    n      Space    Home    n]
-[n n n n n n n n (1)           RCtrl    Left                  Down  Right  n        End     n]
+[n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    Home    n]
+[n n n n n n n n RCtrl         RCtrl    Left                  Down  Right  n        End     n]
+// [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
+// [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
+// [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
+// [n n n n n n n n MediaVolDown  N        M                     n     Escape Space    Home    n]
+// [n n n n n n n n RCtrl         RCtrl    n                     n     n      n        End     n]
 }
 {
 // layer 1
@@ -49,10 +54,15 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // left side                                                                                                                                              
 [n         n            t     t      t      t      n n n n n n n n n n]
 [n         NonUsHash    !     '('    ')'    ^      n n n n n n n n n n]
-[|         *            .     ,      &      SColon n n n n n n n n n n]
+[|         *            ,     .      &      SColon n n n n n n n n n n]
 [Delete    ?            =     <      >      $      n n n n n n n n n n]
-[%         '_'          n     n      n      n      n n n n n n n n n n]
+[%         '_'          t     n      n      t      n n n n n n n n n n]
 // right side                                                                                                                                                    
+// [n n n n n n n n n   t     n            n     n             t        t            t]
+// [n n n n n n n n n   '`'   [RCtrl Left] Up    [RCtrl Right] '['      ']'          t]
+// [n n n n n n n n n   @     Left         Down  Right         '{'      '}'          t]
+// [n n n n n n n n n   '"'   n            n     n             SColon   Quote        t]
+// [n n n n n n n n n   RCtrl t            n     n             /        NonUsBslash  t]
 [n n n n n n n n n   t     t    t    t    t        t            t]
 [n n n n n n n n n   '`'   1    2    3    '['      ']'          t]
 [n n n n n n n n n   @     4    5    6    '{'      '}'          t]
@@ -189,6 +199,38 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n MediaVolUp    H     J                 K     L      P             Enter          t]
 [n n n n n n n n MediaVolDown  N     M                 Up    Up     Space         Home           t]
 [n n n n n n n n (4)           (6)   Left              Down  Right  Down          End            t]
+}
+
+// layer 10 Colemak dh
+{
+// left side                                                                                                                                              
+[n       n      n                 n n    n      n                 n n n n n n n n n]
+[Escape  Grave  W                 E R    T      {DefaultLayer(0)} n n n n n n n n n]
+[Tab     Q      S                 D F    G      MediaScrollUp     n n n n n n n n n]
+[BSpace  A      X                 C V    B      MediaScrollDown   n n n n n n n n n]
+[n       Z      LAlt              n (1)  LShift LGui              n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
+[n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
+[n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
+[n n n n n n n n MediaVolDown  N        M                     Space n      ;        Home    n]
+[n n n n n n n n (1)           RCtrl    Left                  Down  Right  n        End     n]
+}
+
+// layer 11 Numbers
+{
+// left side                                                                                                                                              
+[n       n      n                 n n    n      n                 n n n n n n n n n]
+[Escape  Grave  W                 E R    T      {DefaultLayer(0)} n n n n n n n n n]
+[Tab     Q      S                 D F    G      MediaScrollUp     n n n n n n n n n]
+[BSpace  A      X                 C V    B      MediaScrollDown   n n n n n n n n n]
+[n       Z      LAlt              t (1)  LShift LGui              n n n n n n n n n]
+// right side                                                                                                                                                    
+[n n n n n n n n n    n        t    t    t   n  n n]
+[n n n n n n n n n    n        1    2    3   n  n n]
+[n n n n n n n n n    n        4    5    6   n  n n]
+[n n n n n n n n n    n        7    8    9   n  n n]
+[n n n n n n n n n    RCtrl    -    0    +   n  n n]
 }
     
 
