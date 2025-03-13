@@ -13,6 +13,11 @@ In order to incorportate legacy software whilst still providing a new clean ligh
 
 To really design a keyboard layout properly we want a piece of software that not only tracks individual keys, but combinations, for example how often the the combination ctrl+shift+home used? How often do we actually use enter and is it repeated (and thus shouldn't need a modifier) or quite one off (and therefore being a fn key wouldn't matter). I kind of like the idea of delete or backspace or enter being fn keys since they are the most important keys, eg send email, permanently delete this thing, etc (typically this is actually all just enter, delete/backspace actions are usually recoverable), so (arguably?) less chance of accidentally fumbling a keydown and doing some irreversible, unintentional action.
 
+## Solutions for replacing ctrl key
+
+1. Double tap fn. Tap fn once and then again within 1 second and hold and it becomes ctrl. I can't see how this could be mixed up for anything. Ofcourse this isn't useful for actually replacing ctrl since it has many limitations like you can't do ctrl+1 for example. It is useful however for allowing easy access to another modifier/layer without needing to use up a key, which is useful e.g. for triggering a shortcut when in text edit mode. Probably something I would make use of if designing my own system from scratch.
+1. Chords eg fn+j+k, the problem is that this can't distinguish from someone simply type 45 fast. The solution
+
 ## Dependencies
 
 rustup default beta

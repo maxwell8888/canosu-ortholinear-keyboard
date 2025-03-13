@@ -5,6 +5,8 @@
 ```bash
 rustup default beta
 cargo install flip-link
+sudo apt install -y pkg-config libusb-1.0-0-dev libftdi1-dev
+sudo apt-get install libudev-dev
 cargo install probe-run
 rustup target add thumbv6m-none-eabi
 cargo install elf2uf2-rs
