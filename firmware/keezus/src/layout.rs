@@ -34,10 +34,10 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n       Z          LAlt              (11) RCtrl LShift LGui              n n n n n n n n n]
 // right side                                                                                                                                                    
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
-[n n n n n n n n MediaMute     Y        U                     I     O      Enter    n       n]
-[n n n n n n n n MediaVolUp    H        J                     K     L      P        n       n]
-[n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    n       n]
-[n n n n n n n n RCtrl         (1)      Left                  Down  Right  Delete   n       n]
+[n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
+[n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
+[n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    Home    n]
+[n n n n n n n n RCtrl         (1)      Left                  Down  Right  Delete   End     n]
 }
 {
 // layer 1
@@ -59,7 +59,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // [n n n n n n n n n   '"'   n            n     n             SColon   Quote        t]
 // [n n n n n n n n n   RCtrl t            n     n             /        NonUsBslash  t]
 [n n n n n n n n n   t      t     t      t        t        t            n]
-[n n n n n n n n n   Grave  Home  End    PgUp     PgDown   n            n]
+[n n n n n n n n n   Grave  Home  End    n        Enter    n            n]
 [n n n n n n n n n   Left   Down  Up     Right    '['      ']'          n]
 [n n n n n n n n n   Quote  n     ,      .        SColon   n            n]
 [n n n n n n n n n   RCtrl  t     n      n        /        NonUsBslash  n]

@@ -1,5 +1,36 @@
 # Canosu keyboard
 
+## Design for from scratch software
+
+No ctrl, window, or alt key necessary, when not in a text editing mode all actions/shortcuts are performed with alphanumeric keys directly (will still feel like using modifiers though because we will be making use of shift and fn). Then in text mode we will have conventional style text editing and not force vim style modaling, the only thing we need to do is reserve some of the fn keys for text nav, i.e.:
+
+-   up/down/left/right
+-   left/right word (ctrl left/right)
+-   home/end line
+-   home/end page (ctrl home/end)
+-   look around (ctrl up/down)
+-   all combinations of bspace/delete char/word
+-   cut/copy/paste
+-   undo/redo
+-   spell check
+-   select all, save, format, bold?
+
+which is a lot, and would require an additional layer which ruins our simple two thumb design and would introduce needing to e.g. hold two keys with one thumb.
+We could reduce these requirements a lot by leaning into a "visual mode" where shift isn't used in combination which these nav keys and instead the use just has to activate the visual mode with a given key (could just do this all on the keyboard with a layer key?) and then that we could redefine e.g. shift+left to mean cursor move one word left rather than highlight 1 char left.
+We could also reduce the bspace/delete combinations to a single thing and rely on doing first making selections in visual mode before deleting, which works in theory but means bspace turns from being a single keypress to 3 - activate visual mode, select char to left, delete.
+One problem (when considering "legacy" apps) is that most apps use ctrl+shift+pgup/down to reposition tabs (ie vscode and chrome, both of which I think I could change the shortcuts for (also navigating tabs has nothing to do which pageup/pagedown and I think it would be better to use something else like U/O anyway)).
+Lets consider the most common use cases:
+
+-   Highlight the word to the left
+    Currently this is very quick and comfortable which ctrl+shift+left. We are proposing hold fn, tap visual which could be e.g. V, shift+h which is definitely more complex but pretty reasonable. Could actually just have a different layer for visual mode so it would be fn2+shift(which behaves as ctrl)+h so exactly the same. So the drawback is that we are introducing a second fn layer but it will never be used simultaneously with the main fn layer so will never cause any double thumbing problems.
+
+Something like this could work well and even be compatible with legacy apps/OS. We are just replacing shift with another layer so we can choose how we want it to behave for different keys.
+
+For commands like cut paste etc, these would just be the normal keys used but you need to enter visual mode.
+
+Maybe a better approach is to simply have a second layer on the same thumb side as fn which won't matter because they would never need to be pressed simultaneously. Could even basically just be a Ctrl layer (for compatibility of using Ctrl shortcuts on legacy) but with the spare keys assigned to the ctrl+nav commands (though there are around 6 of these and basically no space around the alpha keys especially given we would also want to be able to do e.g. ctrl+. etc).
+Also with a visual mode we shouldn't need to use fn when navigating with hjkl etc because we never need to input text in visual mode, only navigate. What about if we want to start entering text to replace the current selection?? This would mean an extra keypress? Could just use fn as a single modifier hold is not bad and that will be the expected way to have to navigate while text editing anyway.
+
 ## Design
 
 We want typing to feel more <insert gif of cat smashing alternate hands on keyboard> and less <gif of some kind of awkard position like a really stretch chord on a guitar or a game of twister>.
