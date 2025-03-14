@@ -73,6 +73,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Not a huge fan of having . which is a very important key (especially for programming) a) not on the home row b) using a modifier on the same hand which combined make it far less comfortable to use. A solution might be to just put it in the primary layer, maybe in escapes position (it's normal position) and move escape to the left or to ctrl as a tap key.
 // Also given by default foo. will bring up intellisene (though I potentially prefer it to be triggered manually), it seems like ctrl . (or similar) is a good key combination for bringing up autocomplete/menus(?).
 // Should all nav be on the left hand (consistent for gamers) and just upset the vimmers but at least number input will be more natural, on the same hand as fn for one handed input, and allows , and . to be on a separate hand to the modifier making them slightly more comfortable (though still not on the home row and we also really want to be using the most comfortable positions for nav word left/right anyway...).
+// We probably actually just want to switch the fn and shift keys...
 [n n n n n n n n n   t             t             t             t                 t        t            n]
 [n n n n n n n n n   [LCtrl Up]    [LCtrl Left]  [LCtrl Right] [LCtrl Down]      n        n            n]
 [n n n n n n n n n   Left          Down          Up            Right             '['      ']'          n]

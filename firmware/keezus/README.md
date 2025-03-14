@@ -33,6 +33,9 @@ Also with a visual mode we shouldn't need to use fn when navigating with hjkl et
 
 ## Design
 
+Ultimately not matter how well designed the layout, I think I/users will never really conciously be thinking about what a key combo actually is and we simply are using muscle memory. Given this we shouldn't worry as much about a consistent a sane design and instead be pragmatic and prioritise making the most commonly used commands/chords as comfortable as possible. eg we could list all possible key combos/chords in order of comfort and then go through and see which ones are actually being used and what for and will almost certainly find that some very common commands/chords are far down the list and could be swapped with a higher combo that isn't actually used very much. Probably easier said than done though, the fn layer is probably where there is most scope for these kinds of optimisations.
+Could also consider making the windows keys a more general fn layer since it is very underutilised currently, else it should simply be included in the normal fn layer.
+
 Dedicated arrow keys vs layer
 This is the fundamental question most central to a good user experience. We ofcourse want to reserve the home row for alpha keys and comfortable text input, but we also want to be able to scroll/navigate without a modifier for comfort because it is probably the single most used use case. We can have software like vimium and helix that facilitates this but there will always be a tension here, eg we want to be able to type text in a search box but also hit down to make selections - surely we can just use tab in this case? Though J would be more natural since that is what we are used to for "down".
 
