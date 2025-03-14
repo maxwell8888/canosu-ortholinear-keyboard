@@ -33,6 +33,12 @@ Also with a visual mode we shouldn't need to use fn when navigating with hjkl et
 
 ## Design
 
+Dedicated arrow keys vs layer
+This is the fundamental question most central to a good user experience. We ofcourse want to reserve the home row for alpha keys and comfortable text input, but we also want to be able to scroll/navigate without a modifier for comfort because it is probably the single most used use case. We can have software like vimium and helix that facilitates this but there will always be a tension here, eg we want to be able to type text in a search box but also hit down to make selections - surely we can just use tab in this case? Though J would be more natural since that is what we are used to for "down".
+
+Re wanting to be able to do things/commands whilst editing text but also not wanting to have to rely heavily on Ctrl, I've previously mentioned it is a good idea to consider use of shift separately ie capitalising (more like a layer) vs highlighting (more like a mode). Similarly it makes sense to separate uses of ctrl whilst text editing. Ctrl+nav like move word could/should be independant layer keys (ie [RCtrl Left]) so we are not relying on ctrl. For commands like paste, they are not (typically) repeated commands (like writing CAPITALS or numbers 45624) so they don't need or thumb key or easy to reach key, they could be trigger with taps eg tap the very bottom ring finger key then V or whatever. Using taps is a great way to avoid double thumbing.
+Even without using taps, we should always be clear about what actions are repeated (like writing CAPITALS or numbers 45624) and which actions are one offs and so don't necessarily need to make use of left and right thumbs.
+
 We want typing to feel more <insert gif of cat smashing alternate hands on keyboard> and less <gif of some kind of awkard position like a really stretch chord on a guitar or a game of twister>.
 
 The major problem with my idea of having separate keys for e.g. 1 and ! is that we still need shift for letters, but shift for ! is meaningless so we have a bunch of useless/doesn't make sense modifier combinations. To make it make sense, would need to send a new code for ! and then have a custom keyboard layout installed on the OS, and also no applications in the world would have support for shift ! so it would only be useful in applications I write - actually if I do my plan of having per application remappings/making shortcuts consistent across apps using something like xeremaps then can just map shift ! to something useful at that point.

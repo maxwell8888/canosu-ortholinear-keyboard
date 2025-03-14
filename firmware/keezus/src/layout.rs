@@ -25,20 +25,20 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Goals
 // Type numbers without needing to down thumb on same hand, but also want to be able to do numbers one handed... could just use a locking layer change eg double tap for 1 handed numbers
 // Having . on the same hand as numbers for 1 handed typing seems nice but tab would probably be more useful... 
-// NOTE it is annoying not having Ctrl on might right hand for web browsing/mouse clicking so for now have swapped visual mode and ctrl, but eventually visual mode should be on the same side the normal fn layer. Also maybe don't think of it as visual mode ie highlighting only, but everything you might want to do while editing text. eg paste is one of the things but you don't need to highlight things to paste. Have also added a pinky stretch LCtrl which can hopefully replace the right side ctrl gradually allowing it to be replace with the second layer.
+// NOTE it is annoying not having Ctrl on might right hand for web browsing/mouse clicking so for now have swapped visual mode and ctrl, but eventually visual mode should be on the same side the normal fn layer. Also maybe don't think of it as visual mode ie highlighting only, but everything you might want to do while editing text. eg paste is one of the things but you don't need to highlight things to paste. Have also added a pinky stretch LCtrl which can hopefully replace the right side ctrl gradually allowing it to be replace with the second layer. asdfa
 {
 // left side
-[n       n          n                 n    n     n      n                 n n n n n n n n n]
-[n       n          W                 E    R     T      {DefaultLayer(10)} n n n n n n n n n]
-[n       Q          S                 D    F     G      MediaScrollUp     n n n n n n n n n]
-[n       A          X                 C    V     B      MediaScrollDown   n n n n n n n n n]
-[LCtrl   Z          LAlt              (11) (3)   LShift LGui              n n n n n n n n n]
+[n       n      n                 n    n    n      n                 n n n n n n n n n]
+[Escape  Grave  W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
+[Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
+[BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
+[n       Z      LAlt              (11) n    LShift LGui              n n n n n n n n n]
 // right side
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
 [n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    Home    n]
-[n n n n n n n n RCtrl         (1)      Left                  Down  Right  Delete   End     n]
+[n n n n n n n n RCtrl         (1)      Left                  Down  Right  n        End     n]
 }
 {
 // layer 1 - fn layer
@@ -47,23 +47,34 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // With the current fn key position . and , are actually more comfortable and the right hand side next to the numbers which is also useful for one handed decimal numbers. But if the fn key was in the shift position or on the right hand then the left hand homing positions are of course better than having to move to the H position with the right hand. Maybe try getting used to using the fn key in the outer modifier position on the right hand? The problem with this is that using numbers and backslash with the right hand fn key is uncomfortable... but also not tooo bad?
 // Would be nice to have ! slightly more accessible, as it is probably the next most commonly used punctuation after ?
 // frequency of use outside of coding: , . ? ! () @ £ $ / : '' "" + - =
+
+// Still to fix/find solution for:
+// Ctrl+symbol/number, in particular:
+// Ctrl+/ for comment lines
+// Ctrl =/- for zooming
+// Delete word
+// I think making Ctrl tapable word work for all of these
+
 // left side
 [n         n            t    t    t  t      n n n n n n n n n n]
-[n         Delete       1    2    3  =      n n n n n n n n n n]
-[n         Tab          4    5    6  0      n n n n n n n n n n]
-[n         BSpace       7    8    9  -      n n n n n n n n n n]
-[n         NonUsHash    t    t    t  (2)    n n n n n n n n n n]
+[Grave     n            1    2    3  =      n n n n n n n n n n]
+[n         n            4    5    6  0      n n n n n n n n n n]
+[Delete    n            7    8    9  -      n n n n n n n n n n]
+[n         NonUsHash    t    t    t  t      n n n n n n n n n n]
 // right side
 // [n n n n n n n n n   t     n            n     n             t        t            t]
 // [n n n n n n n n n   '`'   [RCtrl Left] Up    [RCtrl Right] '['      ']'          t]
 // [n n n n n n n n n   @     Left         Down  Right         '{'      '}'          t]
 // [n n n n n n n n n   '"'   n            n     n             SColon   Quote        t]
 // [n n n n n n n n n   RCtrl t            n     n             /        NonUsBslash  t]
-[n n n n n n n n n   t      t     t      t        t        t            n]
-[n n n n n n n n n   Grave  Home  End    n        Enter    n            n]
-[n n n n n n n n n   Left   Down  Up     Right    '['      ']'          n]
-[n n n n n n n n n   Quote  n     ,      .        SColon   n            n]
-[n n n n n n n n n   t      t     n      n        /        NonUsBslash  n]
+
+// I'm not a fan of having Ctrl+navkey in a different position to navkey. Yes we can treat them as separate things but also the traditional approach of treating things like a "matrix" where we can have any combo of direction/ctrl/shift is powerful and intuitive, and trying to flatten that out makes things larger not smaller and more concise. I think a second fn layer which is identical but everything is sent with ctrl would be preferrable. The big down side is that we will still need a normal ctrl key for non-fn commands, so now we have two extra keys - ctrl and fn2/ctrl-fn.
+// Maybe the best solution is actually to have ctrl on the left, use tapping to avoid need to double thumb ctrl and shift, or just accept it is not that commonly used for shortcuts, and stick with using a different position for ctrl+navkey to navkey.
+[n n n n n n n n n   t             t             t             t                 t        t            n]
+[n n n n n n n n n   [LCtrl Up]    [LCtrl Left]  [LCtrl Right] [LCtrl Down]      n        n            n]
+[n n n n n n n n n   Left          Down          Up            Right             '['      ']'          n]
+[n n n n n n n n n   n             n             ,             .                 SColon   Quote        n]
+[n n n n n n n n n   t             t             n             n                 /        NonUsBslash  n]
 }
 {
 // layer 2 - manual shift layer
