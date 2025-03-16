@@ -1,5 +1,9 @@
 # Canosu keyboard
 
+# Design notes for README
+
+Whilst we want to make the layout as sane and consistent as possible, ultimately I believe people simply learn muscle memory for different commands/actions and might not actually know what the underlying keys and modifiers they are pressing actually are without pausing to think/look. Given this, the layout should prioritise assigning the most commonly used actions and commands to the most _comfortable_ combinations/chords rather than what makes most sense/is consistent/is not hacky.
+
 ## Design for from scratch software
 
 No ctrl, window, or alt key necessary, when not in a text editing mode all actions/shortcuts are performed with alphanumeric keys directly (will still feel like using modifiers though because we will be making use of shift and fn). Then in text mode we will have conventional style text editing and not force vim style modaling, the only thing we need to do is reserve some of the fn keys for text nav, i.e.:

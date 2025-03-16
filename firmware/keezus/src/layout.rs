@@ -28,11 +28,11 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // NOTE it is annoying not having Ctrl on might right hand for web browsing/mouse clicking so for now have swapped visual mode and ctrl, but eventually visual mode should be on the same side the normal fn layer. Also maybe don't think of it as visual mode ie highlighting only, but everything you might want to do while editing text. eg paste is one of the things but you don't need to highlight things to paste. Have also added a pinky stretch LCtrl which can hopefully replace the right side ctrl gradually allowing it to be replace with the second layer. asdfa
 {
 // left side
-[n       n      n                 n    n    n      n                 n n n n n n n n n]
-[Escape  Grave  W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
-[Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
-[BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
-[n       Z      LAlt              (11) n    LShift LGui              n n n n n n n n n]
+[n       n      n                 n    n    n      n                   n n n n n n n n n]
+[n       n      W                 E    R    T      {DefaultLayer(10)}  n n n n n n n n n]
+[Tab     Q      S                 D    F    G      MediaScrollUp       n n n n n n n n n]
+[BSpace  A      X                 C    V    B      MediaScrollDown     n n n n n n n n n]
+[RCtrl   Z      LAlt              (11) n    LShift LGui                n n n n n n n n n]
 // right side
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
@@ -57,7 +57,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 // left side
 [n         n            t    t    t  t      n n n n n n n n n n]
-[Grave     n            1    2    3  =      n n n n n n n n n n]
+[n         Grave        1    2    3  =      n n n n n n n n n n]
 [n         n            4    5    6  0      n n n n n n n n n n]
 [Delete    n            7    8    9  -      n n n n n n n n n n]
 [n         NonUsHash    t    t    t  t      n n n n n n n n n n]
