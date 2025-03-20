@@ -26,18 +26,18 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Type numbers without needing to down thumb on same hand, but also want to be able to do numbers one handed... could just use a locking layer change eg double tap for 1 handed numbers
 // Having . on the same hand as numbers for 1 handed typing seems nice but tab would probably be more useful... 
 {
-// left side                                                                                                                                              
+// left side
 [n       n      n                 n    n    n      n                 n n n n n n n n n]
-[Escape  Grave  W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
+[Grave   Escape W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
 [Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
 [BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
 [n       Z      LAlt              (11) (1)  LShift LGui              n n n n n n n n n]
-// right side                                                                                                                                                    
-[n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
-[n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
-[n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
-[n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    Home    n]
-[n n n n n n n n RCtrl         RCtrl    Left                  Down  Right  n        End     n]
+// right side
+[n n n n n n n n n              n        {DefaultLayer(3)}     n     n      n        n       n]
+[n n n n n n n n MediaMute      Y        U                     I     O      PgUp     PgDown  n]
+[n n n n n n n n MediaVolUp     H        J                     K     L      P        Enter   n]
+[n n n n n n n n MediaVolDown   N        M                     Up    n      Space    Home    n]
+[n n n n n n n n [RCtrl RShift] RCtrl    Left                  Down  Right  Right    End     n]
 // [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 // [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 // [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
@@ -51,33 +51,33 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // With the current fn key position . and , are actually more comfortable and the right hand side next to the numbers which is also useful for one handed decimal numbers. But if the fn key was in the shift position or on the right hand then the left hand homing positions are of course better than having to move to the H position with the right hand. Maybe try getting used to using the fn key in the outer modifier position on the right hand? The problem with this is that using numbers and backslash with the right hand fn key is uncomfortable... but also not tooo bad?
 // Would be nice to have ! slightly more accessible, as it is probably the next most commonly used punctuation after ?
 // frequency of use outside of coding: , . ? ! () @ £ $ / : '' "" + - =
-// left side                                                                                                                                              
-[n         n            t     t      t      t      n n n n n n n n n n]
-[n         NonUsHash    !     '('    ')'    ^      n n n n n n n n n n]
-[|         *            ,     .      &      SColon n n n n n n n n n n]
-[Delete    ?            =     <      >      $      n n n n n n n n n n]
-[%         '_'          t     n      n      t      n n n n n n n n n n]
-// right side                                                                                                                                                    
+// left side
+[n                   n            t     t               t      t               n n n n n n n n n n]
+['`'                 NonUsHash    !     '('             ')'    ^               n n n n n n n n n n]
+[|                   *            ,     .               &      [LShift SColon] n n n n n n n n n n]
+[Delete              ?            =     <               >      $               n n n n n n n n n n]
+[%                   '_'          t     [LShift 3]      t      t               n n n n n n n n n n]
+// right side
 // [n n n n n n n n n   t     n            n     n             t        t            t]
 // [n n n n n n n n n   '`'   [RCtrl Left] Up    [RCtrl Right] '['      ']'          t]
 // [n n n n n n n n n   @     Left         Down  Right         '{'      '}'          t]
 // [n n n n n n n n n   '"'   n            n     n             SColon   Quote        t]
 // [n n n n n n n n n   RCtrl t            n     n             /        NonUsBslash  t]
-[n n n n n n n n n   t     t    t    t    t        t            t]
-[n n n n n n n n n   '`'   1    2    3    '['      ']'          t]
-[n n n n n n n n n   @     4    5    6    '{'      '}'          t]
-[n n n n n n n n n   '"'   7    8    9    SColon   Quote        t]
-[n n n n n n n n n   RCtrl -    0    +    /        NonUsBslash  t]
+[n n n n n n n n n   t     t    t                   t    t        t            t]
+[n n n n n n n n n   @     1    2                   3    '['      ']'          t]
+[n n n n n n n n n   0     4    5                   6    '{'      '}'          t]
+[n n n n n n n n n   '"'   7    8                   9    SColon   Quote        t]
+[n n n n n n n n n   t     -    [RShift NonUsHash]  +    /        NonUsBslash  t]
 }
 {
 // layer 2
-// left side                                                                                                                                              
+// left side
 [t           Escape     Home   t   End        t     End    n n n n n n n n n]
 [t           RAlt       Grave  W    E         R     T      n n n n n n n n n]
 [t           t          Q      S    D         F     G      n n n n n n n n n]
 [t           Delete     A      Z    X         C     V      n n n n n n n n n]
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n n     n     n      n   n   n   n]
 [n n n n n n n n n n     F1    F2     F3  n   L   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
@@ -91,13 +91,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // MacOS Normal
 {
 // layer 3
-// left side                                                                                                                                              
+// left side
 [n       n      n     n     n    n      n               n n n n n n n n n]
 [Escape  Grave  W     E     R    T      t               n n n n n n n n n]
 [Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
 [BSpace  A      X     C     V    B      MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n             n     {DefaultLayer(6)} t     t      t        t       t]
 [n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown  t]
 [n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter   t]
@@ -106,13 +106,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 }
 {
 // layer 4
-// left side                                                                                                                                              
+// left side
 [n         n            t     t      t      t      n n n n n n n n n n]
 [Escape    NonUsHash    !     @      $      ^      n n n n n n n n n n]
 [<         >            .     ,      (5)    SColon n n n n n n n n n n]
 [Delete    ?            '('   ')'    &      %      n n n n n n n n n n]
 [*         '"'          t     |      t      t      n n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n   t    t    t    t    t        t            t]
 [n n n n n n n n n   ~    1    2    3    '['      ']'          t]
 [n n n n n n n n n   .    4    5    6    '{'      '}'          t]
@@ -121,13 +121,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 }
 {
 // layer 5
-// left side                                                                                                                                              
+// left side
 [t           Escape     Home   t   End        t     End    n n n n n n n n n]
 [t           RAlt       Grave  W    E         R     T      n n n n n n n n n]
 [t           t          Q      S    D         F     G      n n n n n n n n n]
 [t           Delete     A      Z    X         C     V      n n n n n n n n n]
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n n     n     n      n   n   n   n]
 [n n n n n n n n n n     F1    F2     F3  n   M   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
@@ -141,13 +141,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // MacOS Linux Like
 {
 // layer 6
-// left side                                                                                                                                              
+// left side
 [n       n      n     n     n    n      n               n n n n n n n n n]
 [Escape  /      W     E     R    T      t               n n n n n n n n n]
 [Tab     Q      S     D     F    G      MediaScrollUp   n n n n n n n n n]
 [BSpace  L      X     C     V    B      MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt  LCtrl (4)  RShift LGui            n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n             n     {DefaultLayer(0)} t     t      t        t       t]
 [n n n n n n n n MediaMute     Y     U                 I     O      PgUp     PgDown  t]
 [n n n n n n n n MediaVolUp    H     J                 K     L      P        Enter   t]
@@ -156,13 +156,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 }
 {
 // layer 7
-// left side                                                                                                                                              
+// left side
 [n         n            t     t      t      t      n n n n n n n n n n]
 [Escape    NonUsHash    !     @      $      ^      n n n n n n n n n n]
 [<         >            .     ,      (5)    SColon n n n n n n n n n n]
 [Delete    ?            '('   ')'    &      %      n n n n n n n n n n]
 [*         '"'          t     |      t      t      n n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n   t    t    t    t    t        t            t]
 [n n n n n n n n n   ~    1    2    3    '['      ']'          t]
 [n n n n n n n n n   .    4    5    6    '{'      '}'          t]
@@ -171,13 +171,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 }
 {
 // layer 8
-// left side                                                                                                                                              
+// left side
 [t           Escape     Home   t   End        t     End    n n n n n n n n n]
 [t           RAlt       Grave  W    E         R     T      n n n n n n n n n]
 [t           t          Q      S    D         F     G      n n n n n n n n n]
 [t           Delete     A      Z    X         C     V      n n n n n n n n n]
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n n     n     n      n   n   n   n]
 [n n n n n n n n n n     F1    F2     F3  n   M   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
@@ -187,13 +187,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 {
 // layer 9 Right Cmd/Ctrl
-// left side                                                                                                                                              
+// left side
 [n       n      n     n         n        n        n               n n n n n n n n n]
 [Escape  /      W     E         R        [LGui T] t        n n n n n n n n n]
 [Tab     Q      S     D         F        G        MediaScrollUp   n n n n n n n n n]
 [BSpace  A      X     [LGui C]  [LGui V] B        MediaScrollDown n n n n n n n n n]
 [n       Z      LAlt  LCtrl     (4)      RShift   LGui            n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n             n     {DefaultLayer(0)} t     t      t             t              t]
 [n n n n n n n n MediaMute     Y     U                 I     O      [RCtrl PgUp]  [RCtrl PgDown] t]
 [n n n n n n n n MediaVolUp    H     J                 K     L      P             Enter          t]
@@ -203,13 +203,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 // layer 10 Colemak dh
 {
-// left side                                                                                                                                              
+// left side
 [n       n      n                 n n    n      n                 n n n n n n n n n]
 [Escape  Grave  W                 E R    T      {DefaultLayer(0)} n n n n n n n n n]
 [Tab     Q      S                 D F    G      MediaScrollUp     n n n n n n n n n]
 [BSpace  A      X                 C V    B      MediaScrollDown   n n n n n n n n n]
 [n       Z      LAlt              n (1)  LShift LGui              n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
@@ -219,13 +219,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 // layer 11 Numbers
 {
-// left side                                                                                                                                              
+// left side
 [n       n      n                 n n    n      n                 n n n n n n n n n]
 [Escape  Grave  W                 E R    T      {DefaultLayer(0)} n n n n n n n n n]
 [Tab     Q      S                 D F    G      MediaScrollUp     n n n n n n n n n]
 [BSpace  A      X                 C V    B      MediaScrollDown   n n n n n n n n n]
 [n       Z      LAlt              t (1)  LShift LGui              n n n n n n n n n]
-// right side                                                                                                                                                    
+// right side  
 [n n n n n n n n n    n        t    t    t   n  n n]
 [n n n n n n n n n    n        1    2    3   n  n n]
 [n n n n n n n n n    n        4    5    6   n  n n]
@@ -236,13 +236,13 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 
 // {
 // // layer 6 - Cmd
-// // left side                                                                                                                                              
+// // left side
 // [n         n     n           n      CapsLock n        n               n n n n n n n n n]
 // [Escape    Grave [LGui W]    E      [LGui R] [LGui T] t               n n n n n n n n n]
 // [Tab       Q     [LGui S]    D        [LGui F] G      MediaScrollUp   n n n n n n n n n]
 // [BSpace    [LGui A] [LGui X] [LGui C] [LGui V] B      MediaScrollDown n n n n n n n n n]
 // [{DefaultLayer(0)} [LGui Z] LAlt  LCtrl (4)    RShift (5)             n n n n n n n n n]
-// // right side                                                                                                                                                    
+// // right side
 // [n n n n n n n n t          t     t     t     t      t        t       t]
 // [n n n n n n n n MediaMute  [RGui Y] [RGui U] [RGui I] O [RGui LAlt Left]     [RGui LAlt Right]  t]
 // [n n n n n n n n MediaVolUp    [RGui H]     [RGui J]     K     [RGui L] [RGui P]  Enter   t]
