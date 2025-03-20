@@ -4,6 +4,8 @@
 
 Whilst we want to make the layout as sane and consistent as possible, ultimately I believe people simply learn muscle memory for different commands/actions and might not actually know what the underlying keys and modifiers they are pressing actually are without pausing to think/look. Given this, the layout should prioritise assigning the most commonly used actions and commands to the most _comfortable_ combinations/chords rather than what makes most sense/is consistent/is not hacky.
 
+Regardless of existing conventions like VIM or WASD, it arguably makes most sense for nav to be on the right hand because left (for selecting previous text) and down (for selecting from dropdowns, scroling, etc) are the two most common navs and so we want them on first finger and middle finger, not third finger and middle finger. On the other hand I think home row third finger is perfectly fine and for a from scratch setup we could just take right nav to mean enter/accept/select, so it is not a waste of a strong finger on a strong key.
+
 ## Design for from scratch software
 
 No ctrl, window, or alt key necessary, when not in a text editing mode all actions/shortcuts are performed with alphanumeric keys directly (will still feel like using modifiers though because we will be making use of shift and fn). Then in text mode we will have conventional style text editing and not force vim style modaling, the only thing we need to do is reserve some of the fn keys for text nav, i.e.:
@@ -36,6 +38,8 @@ Maybe a better approach is to simply have a second layer on the same thumb side 
 Also with a visual mode we shouldn't need to use fn when navigating with hjkl etc because we never need to input text in visual mode, only navigate. What about if we want to start entering text to replace the current selection?? This would mean an extra keypress? Could just use fn as a single modifier hold is not bad and that will be the expected way to have to navigate while text editing anyway.
 
 ## Design
+
+Definitely need to experiment more with tap keys. Especially where I am struggling to get nice chords without double thumbs for things like !, tapping could possibly solve this. Maybe left-hand-fn-layer => some-right-hand-key-we-are-not-using-like-M => W (1/!). I think symbols are probably actually not great because they do get repeated quite often eg hi!!!!! && || etc. In fact there aren't many keys that might get repeated.
 
 Ultimately not matter how well designed the layout, I think I/users will never really conciously be thinking about what a key combo actually is and we simply are using muscle memory. Given this we shouldn't worry as much about a consistent a sane design and instead be pragmatic and prioritise making the most commonly used commands/chords as comfortable as possible. eg we could list all possible key combos/chords in order of comfort and then go through and see which ones are actually being used and what for and will almost certainly find that some very common commands/chords are far down the list and could be swapped with a higher combo that isn't actually used very much. Probably easier said than done though, the fn layer is probably where there is most scope for these kinds of optimisations.
 Could also consider making the windows keys a more general fn layer since it is very underutilised currently, else it should simply be included in the normal fn layer.

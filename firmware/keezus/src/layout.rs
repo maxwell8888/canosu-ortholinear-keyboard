@@ -28,17 +28,17 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // NOTE it is annoying not having Ctrl on might right hand for web browsing/mouse clicking so for now have swapped visual mode and ctrl, but eventually visual mode should be on the same side the normal fn layer. Also maybe don't think of it as visual mode ie highlighting only, but everything you might want to do while editing text. eg paste is one of the things but you don't need to highlight things to paste. Have also added a pinky stretch LCtrl which can hopefully replace the right side ctrl gradually allowing it to be replace with the second layer. asdfa
 {
 // left side
-[n       n      n                 n    n    n      n                   n n n n n n n n n]
-[n       n      W                 E    R    T      {DefaultLayer(10)}  n n n n n n n n n]
-[Tab     Q      S                 D    F    G      MediaScrollUp       n n n n n n n n n]
-[BSpace  A      X                 C    V    B      MediaScrollDown     n n n n n n n n n]
-[RCtrl   Z      LAlt              (11) n    LShift LGui                n n n n n n n n n]
+[n       n      n                 n    n       n      n                   n n n n n n n n n]
+[n       n      W                 E    R       T      {DefaultLayer(10)}  n n n n n n n n n]
+[Tab     Q      S                 D    F       G      MediaScrollUp       n n n n n n n n n]
+[BSpace  A      X                 C    V       B      MediaScrollDown     n n n n n n n n n]
+[RCtrl   Z      LAlt              (11) (1)     LShift LGui                n n n n n n n n n]
 // right side
 [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
-[n n n n n n n n MediaVolDown  N        M                     Up    Escape Space    Home    n]
-[n n n n n n n n RCtrl         (1)      Left                  Down  Right  n        End     n]
+[n n n n n n n n MediaVolDown  N        M                     Down  Up     Space    Home    n]
+[n n n n n n n n RShift        RCtrl    Left                  n     Escape Right    End     n]
 }
 {
 // layer 1 - fn layer
@@ -59,7 +59,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n         n            t    t    t  t      n n n n n n n n n n]
 [n         Grave        1    2    3  =      n n n n n n n n n n]
 [n         n            4    5    6  0      n n n n n n n n n n]
-[Delete    n            7    8    9  -      n n n n n n n n n n]
+[Delete    LShift       7    8    9  -      n n n n n n n n n n]
 [n         NonUsHash    t    t    t  t      n n n n n n n n n n]
 // right side
 // [n n n n n n n n n   t     n            n     n             t        t            t]
@@ -74,11 +74,11 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // Also given by default foo. will bring up intellisene (though I potentially prefer it to be triggered manually), it seems like ctrl . (or similar) is a good key combination for bringing up autocomplete/menus(?).
 // Should all nav be on the left hand (consistent for gamers) and just upset the vimmers but at least number input will be more natural, on the same hand as fn for one handed input, and allows , and . to be on a separate hand to the modifier making them slightly more comfortable (though still not on the home row and we also really want to be using the most comfortable positions for nav word left/right anyway...).
 // We probably actually just want to switch the fn and shift keys...
-[n n n n n n n n n   t             t             t             t                 t        t            n]
-[n n n n n n n n n   [LCtrl Up]    [LCtrl Left]  [LCtrl Right] [LCtrl Down]      n        n            n]
-[n n n n n n n n n   Left          Down          Up            Right             '['      ']'          n]
-[n n n n n n n n n   n             n             ,             .                 SColon   Quote        n]
-[n n n n n n n n n   t             t             n             n                 /        NonUsBslash  n]
+[n n n n n n n n n   t             t             t             t                 t                    t            n]
+[n n n n n n n n n   [LCtrl Up]    [LCtrl Left]  [LCtrl Right] [LCtrl PgUp]      [LCtrl PgDown]       n            n]
+[n n n n n n n n n   Left          Down          Up            Right             '['                  ']'          n]
+[n n n n n n n n n   [LCtrl Down]  [LCtrl Home]  ,             .                 SColon               Quote        n]
+[n n n n n n n n t   t             PgUp          PgDown        [LCtrl End]       /                    NonUsBslash  n]
 }
 {
 // layer 2 - manual shift layer
