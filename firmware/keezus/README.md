@@ -2,6 +2,10 @@
 
 ## Design
 
+I think the ultimate solution (at least for a smaller layout) is to use one of my very first ideas of having modifiers on both hands on the home row which are accessed via a single thumb on each hand. Originally I abandoned this idea because it requires heavy chording so it more tiring, however if the thumb keys were "tapable" I think this would overcome this as it adds an extra keypress but doesn't require chording. Tapping doesn't really help in a lot of cases because it is inefficient if the key needs to be repeated, but with this design, you can hold the modifiers so repeating is fine.
+Downsides:
+Would still ending up hitting a lot of keys, eg 4 for shifted symbols like colons (thumb -> shift, layer -> semicolon)
+
 We want typing to feel more <insert gif of cat smashing alternate hands on keyboard> and less <gif of some kind of awkard position like a really stretch chord on a guitar or a game of twister>.
 
 The major problem with my idea of having separate keys for e.g. 1 and ! is that we still need shift for letters, but shift for ! is meaningless so we have a bunch of useless/doesn't make sense modifier combinations. To make it make sense, would need to send a new code for ! and then have a custom keyboard layout installed on the OS, and also no applications in the world would have support for shift ! so it would only be useful in applications I write - actually if I do my plan of having per application remappings/making shortcuts consistent across apps using something like xeremaps then can just map shift ! to something useful at that point.

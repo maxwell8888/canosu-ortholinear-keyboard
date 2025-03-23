@@ -28,7 +28,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 {
 // left side
 [n       n      n                 n    n    n      n                 n n n n n n n n n]
-[Grave   Escape W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
+[n       n      W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
 [Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
 [BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
 [n       Z      LAlt              (11) (1)  LShift LGui              n n n n n n n n n]
@@ -36,7 +36,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n              n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute      Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp     H        J                     K     L      P        Enter   n]
-[n n n n n n n n MediaVolDown   N        M                     Up    n      Space    Home    n]
+[n n n n n n n n MediaVolDown   N        M                     Up    Escape Space    Home    n]
 [n n n n n n n n [RCtrl RShift] RCtrl    Left                  Down  Right  Right    End     n]
 // [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 // [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
@@ -53,10 +53,10 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 // frequency of use outside of coding: , . ? ! () @ £ $ / : '' "" + - =
 // left side
 [n                   n            t     t               t      t               n n n n n n n n n n]
-['`'                 NonUsHash    !     '('             ')'    ^               n n n n n n n n n n]
+[Grave               NonUsHash    !     '('             ')'    ^               n n n n n n n n n n]
 [|                   *            ,     .               &      [LShift SColon] n n n n n n n n n n]
 [Delete              ?            =     <               >      $               n n n n n n n n n n]
-[%                   '_'          t     [LShift 3]      t      t               n n n n n n n n n n]
+[%                   '_'          t     [LShift 3]      t      n               n n n n n n n n n n]
 // right side
 // [n n n n n n n n n   t     n            n     n             t        t            t]
 // [n n n n n n n n n   '`'   [RCtrl Left] Up    [RCtrl Right] '['      ']'          t]
