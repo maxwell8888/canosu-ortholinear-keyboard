@@ -1,6 +1,25 @@
 # Canosu keyboard
 
+## Keys not typically repeated (useful for using with taps)
+
+### Typically only pressed once
+
+Home, End,
+
+### Typically not pressed many times
+
+Escape, F keys, most symbol keys excluding those below
+
+### Often hit repeatedly
+
+Arrorws, Page Up/Down, Enter, Backspace, Delete, Tab
+!, full stop, brackets, question mark
+
 ## Design
+
+A REALLY HUGE drawback of `ctrl <key>` based commands, is specifically ones that open text boxes because you can't role the keys, which is why I always end up with chaos when e.g. I try to `ctrl F` to search something but type w too fast before my thumb has come off the ctrl key and so close the tab. A modal wouldn't have this problem (assuming there is only one key press to enter find mode) because any keys coming after would _immediately_ be entered as text. Actually I think I am also starting to have this problem just with the symbol/fn modifier, e.g. typing hypen-then-space, which makes sense because it is no different to ctrlF and will become more common the fast I get with the layout. No sure how to avoid this other than something like put the modifier on pinkeys to make the harder to roll? Could set it so a modifer hold will automatically turn off after first key and use mod-tap for multiple symbols then tap again? I think could do same thing for shift?
+I am actually coming back round to my original idea of thumb-fn + home-row-mods on each hand. surely the chording effect is avoided by allowing taps, is only 1 extra keystroke but also alternates hand so is faster and more comfortable, and allows more layers modifiers (potentially nav etc)? Drawbacks: sometimes it is nice being able to use one hand - but could still do this with taps? I think previously my main problem was pressing the home row mod before the thumb, but I don't really see how this is diferent to normal modifiers - maybe it being a chord makes you want to hit them at the same time
+Or just accept nothing is perfect and the thumb modifier rolls are quiet rare - mostly only a problem if the key is on the same hand as the modifier so you are chording and naturally don't life the thumb until until you also lift the key up.
 
 I think the ultimate solution (at least for a smaller layout) is to use one of my very first ideas of having modifiers on both hands on the home row which are accessed via a single thumb on each hand. Originally I abandoned this idea because it requires heavy chording so it more tiring, however if the thumb keys were "tapable" I think this would overcome this as it adds an extra keypress but doesn't require chording. Tapping doesn't really help in a lot of cases because it is inefficient if the key needs to be repeated, but with this design, you can hold the modifiers so repeating is fine.
 Downsides:

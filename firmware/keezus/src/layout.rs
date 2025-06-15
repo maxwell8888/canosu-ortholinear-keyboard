@@ -31,13 +31,24 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n       n      W                 E    R    T      {DefaultLayer(10)} n n n n n n n n n]
 [Tab     Q      S                 D    F    G      MediaScrollUp     n n n n n n n n n]
 [BSpace  A      X                 C    V    B      MediaScrollDown   n n n n n n n n n]
-[n       Z      LAlt              (11) (1)  LShift LGui              n n n n n n n n n]
+[n       Z      LAlt              (8)  (1)  LShift LGui              n n n n n n n n n]
 // right side
 [n n n n n n n n n              n        {DefaultLayer(3)}     n     n      n        n       n]
 [n n n n n n n n MediaMute      Y        U                     I     O      PgUp     PgDown  n]
 [n n n n n n n n MediaVolUp     H        J                     K     L      P        Enter   n]
 [n n n n n n n n MediaVolDown   N        M                     Up    Escape Space    Home    n]
-[n n n n n n n n [RCtrl RShift] RCtrl    Left                  Down  Right  Right    End     n]
+// [n n n n n n n n [RCtrl RShift] RCtrl    Left                  Down  Right  Right    End     n]
+[n n n n n n n n (11)           RCtrl    Left                  Down  Right  Right    End     n]
+
+// I think this is a good layout idea but want to try using vim keybindings for a while before learning it properly because the down arrow is still relatively uncomfortable compared to J, which is annoying when reading through loads of code.
+// [n n n n n n n n n              n        {DefaultLayer(3)}     n     n      n        n       n]
+// [n n n n n n n n MediaMute      Y        U                     I     O      PgUp     PgDown  n]
+// [n n n n n n n n MediaVolUp     H        J                     K     L      P        Enter   n]
+// [n n n n n n n n MediaVolDown   N        M                     Down  Up     Space    Escape  n]
+// [n n n n n n n n [RCtrl RShift] RCtrl    Left                  Home  End    Right    n       n]
+
+
+
 // [n n n n n n n n n             n        {DefaultLayer(3)}     n     n      n        n       n]
 // [n n n n n n n n MediaMute     Y        U                     I     O      PgUp     PgDown  n]
 // [n n n n n n n n MediaVolUp    H        J                     K     L      P        Enter   n]
@@ -170,7 +181,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n n   t    -    0    =    Grave    NonUsBslash  t]
 }
 {
-// layer 8
+// layer 8 fn layer
 // left side
 [t           Escape     Home   t   End        t     End    n n n n n n n n n]
 [t           RAlt       Grave  W    E         R     T      n n n n n n n n n]
@@ -179,7 +190,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [t           LShift     LShift LAlt LGui      LCtrl Space  n n n n n n n n n]
 // right side  
 [n n n n n n n n n n     n     n      n   n   n   n]
-[n n n n n n n n n n     F1    F2     F3  n   M   n]
+[n n n n n n n n n n     F1    F2     F3  n   n   n]
 [n n n n n n n n n n     F4    F5     F6  n   n   n]
 [n n n n n n n n n n     F7    F8     F9  n   n   n]
 [n n n n n n n n n t     F10   F11    F12 n   n   n]
@@ -217,7 +228,7 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n n n n n n n n (1)           RCtrl    Left                  Down  Right  n        End     n]
 }
 
-// layer 11 Numbers
+// layer 11 Numpad
 {
 // left side
 [n       n      n                 n n    n      n                 n n n n n n n n n]
@@ -227,10 +238,10 @@ pub static LAYERS: keyberon::layout::Layers<NUM_COLS, NUM_ROWS, NUM_LAYERS, Cust
 [n       Z      LAlt              t (1)  LShift LGui              n n n n n n n n n]
 // right side  
 [n n n n n n n n n    n        t    t    t   n  n n]
-[n n n n n n n n n    n        1    2    3   n  n n]
-[n n n n n n n n n    n        4    5    6   n  n n]
-[n n n n n n n n n    n        7    8    9   n  n n]
-[n n n n n n n n n    RCtrl    -    0    +   n  n n]
+[n n n n n n n n n    n        Kp7  Kp8  Kp9 n  n n]
+[n n n n n n n n n    n        Kp4  Kp5  Kp6 n  n n]
+[n n n n n n n n n    n        Kp1  Kp2  Kp3 n  n n]
+[n n n n n n n n n    t        n    n    n   n  n n]
 }
     
 
